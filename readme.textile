@@ -1,10 +1,12 @@
 h1. SignalResponder
 
 h2. Dependencies:
+
 Signals by Robert Penner
 https://github.com/robertpenner/as3-signals
 
 h2. Why?
+
 I wanted to create an easy-to-use helper class that can deal with async process state changes.
 A SignalResponder allows you to easily respond to start, progress, success and failure signals.
 It's meant to be a versatile class, that can be used in many different ways, allowing to use them
@@ -43,7 +45,9 @@ private function _handleCompleteEvent( e : Event ) : void{
 </pre>
 
 h2. Advanced usage
+
 h3. Custom signals for specific state changes
+
 A SignalResponder can use custom signals for specific state changes
 
 <pre>
@@ -58,7 +62,9 @@ private function _handleSuccessSignal( data : String ):void
 	trace( data );
 }
 </pre>
+
 h3. Using a custom signal for all state changes
+
 SignalResponder uses a ISignalFactory to create the signals for the various state changes.
 By default the factory creates signals of type Signal, but this can easily be adjusted.
 
@@ -70,6 +76,7 @@ var responder : SignalResponder = new SignalResponder( factory );
 </pre>
 
 h2. Notes
+
 * The signals are instantiated lazily, if a process doesn't dispatch a certain signal and there
 were no listeners specified for that particular signal, then the signal will not be instantiated.
 This means that in cases as above in the example of Basic Usage only one signal is instantiated.
