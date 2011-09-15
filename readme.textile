@@ -80,7 +80,7 @@ h2. Notes
 * The signals are instantiated lazily, if a process doesn't dispatch a certain signal and there
 were no listeners specified for that particular signal, then the signal will not be instantiated.
 This means that in cases as above in the example of Basic Usage only one signal is instantiated.
-* A SignalResponder has a <pre>result</pre> property which contains the result of the process after
+* A SignalResponder has a `result` property which contains the result of the process after
 completion and is bindable.
-* The <pre>status</pre> property contains the current process state expressed as a constant from 
+* The `status` property contains the current process state expressed as a constant from 
 SignalResponderStatus
