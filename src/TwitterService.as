@@ -19,19 +19,17 @@ package
 		
 		private var _loader : URLLoader;
 		private var _responder : SignalResponder;
-		private var _completeSignal : NativeSignal;
 		
 		public function loadTwitterStream( responder : SignalResponder ) : void{
+			responder.startSignal.dispatch();
 			var request : URLRequest = new URLRequest( TWITTER_FEED_URL );
 			_loader = new URLLoader();
-			_completeSignal = new NativeSignal( _loader, Event.COMPLETE, Event );
-			_completeSignal.addOnce( _handleCompleteSignal );
-			responder.startSignal.dispatch();
+			_loader.addEventListener( Event.COMPLETE, _handleCompleteEvent );
 			_loader.load( request );
 			_responder = responder;
 		}
 		
-		protected function _handleCompleteSignal(event:Event):void
+		protected function _handleCompleteEvent(event:Event):void
 		{
 			_responder.successSignal.dispatch( _loader.data );
 		}

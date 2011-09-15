@@ -1,0 +1,79 @@
+h1. SignalResponder
+
+h2. Dependencies:
+Signals by Robert Penner
+https://github.com/robertpenner/as3-signals
+
+h2. Why?
+I wanted to create an easy-to-use helper class that can deal with async process state changes.
+A SignalResponder allows you to easily respond to start, progress, success and failure signals.
+It's meant to be a versatile class, that can be used in many different ways, allowing to use them
+in any way you see fit.
+
+h2. Basic usage
+
+Consumption of a process result through a SignalResponder
+
+<pre>
+_responder = new SignalResponder();
+_responder.successSignal.addOnce( _handleSuccessSignal );
+_service = new TwitterService();
+_service.loadTwitterStream( _responder );
+
+private function _handleSuccessSignal( data : String ):void
+{
+	trace( data );
+}
+</pre>
+
+Usage of a SignalResponder in the process
+
+<pre>
+public function loadTwitterStream( responder : SignalResponder ) : void{
+	var request : URLRequest = new URLRequest( TWITTER_FEED_URL );
+	_loader = new URLLoader();
+	_loader.addEventListener( Event.COMPLETE, _handleCompleteEvent );
+	_loader.load( request );
+	_responder = responder;
+}
+
+private function _handleCompleteEvent( e : Event ) : void{
+	_responder.successSignal.dispatch( _loader.data );
+}
+</pre>
+
+h2. Advanced usage
+h3. Custom signals for specific state changes
+A SignalResponder can use custom signals for specific state changes
+
+<pre>
+_responder = new SignalResponder();
+_responder.successSignal = new TwitterStreamLoadedSignal();
+_responder.successSignal.addOnce( _handleSuccessSignal );
+_service = new TwitterService();
+_service.loadTwitterStream( _responder );
+
+private function _handleSuccessSignal( data : String ):void
+{
+	trace( data );
+}
+</pre>
+h3. Using a custom signal for all state changes
+SignalResponder uses a ISignalFactory to create the signals for the various state changes.
+By default the factory creates signals of type Signal, but this can easily be adjusted.
+
+<pre>
+var factory : ISignalFactory = new SignalFactory( TwitterServiceStateChangeSignal );
+var responder : SignalResponder = new SignalResponder( factory );
+//now all 4 signals (startSignal, progressSignal, successSignal and failureSignal ) will be of
+//type TwitterServiceStateChangeSignal
+</pre>
+
+h2. Notes
+* The signals are instantiated lazily, if a process doesn't dispatch a certain signal and there
+were no listeners specified for that particular signal, then the signal will not be instantiated.
+This means that in cases as above in the example of Basic Usage only one signal is instantiated.
+* A SignalResponder has a <pre>result</pre> property which contains the result of the process after
+completion and is bindable.
+* The <pre>status</pre> property contains the current process state expressed as a constant from 
+SignalResponderStatus
