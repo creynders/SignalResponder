@@ -1,5 +1,7 @@
 h1. SignalResponder
 
+You can contact me on Twitter with questions/remarks : "@camillereynders":http://twitter.com/camillereynders.
+
 h2. Dependencies:
 
 Signals by Robert Penner
@@ -11,8 +13,6 @@ I wanted to create an easy-to-use helper class that can deal with async process 
 A SignalResponder allows you to easily respond to start, progress, success and failure signals.
 It's meant to be a versatile class, that can be used in many different ways, allowing to use them
 in any way you see fit.
-
-You can contact me on Twitter with questions/remarks : "@camillereynders":http://twitter.com/camillereynders.
 
 h2. Basic usage
 
