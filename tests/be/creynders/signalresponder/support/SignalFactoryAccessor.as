@@ -1,4 +1,4 @@
-package be.creynders.signalresponder.tests.support
+package be.creynders.signalresponder.support
 {
 	import be.creynders.signalresponder.SignalFactory;
 	

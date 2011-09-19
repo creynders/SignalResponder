@@ -1,10 +1,11 @@
-package be.creynders.signalresponder.tests
+package be.creynders.signalresponder
 {
-	import be.creynders.signalresponder.SignalFactory;
-	import be.creynders.signalresponder.tests.support.CustomSignal;
-	import be.creynders.signalresponder.tests.support.SignalFactoryAccessor;
+	import asunit.asserts.assertEquals;
+	import asunit.asserts.assertNotNull;
+	import asunit.asserts.assertTrue;
 	
-	import flexunit.framework.Assert;
+	import be.creynders.signalresponder.support.CustomSignal;
+	import be.creynders.signalresponder.support.SignalFactoryAccessor;
 	
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.PrioritySignal;
@@ -37,8 +38,8 @@ package be.creynders.signalresponder.tests
 		{
 			var factory : SignalFactory = new SignalFactory();
 			var signal : ISignal = factory.createSignal();
-			Assert.assertNotNull("signal should not be null", signal);
-			Assert.assertTrue( 'default signal should be of type Signal', signal is Signal );
+			assertNotNull("signal should not be null", signal);
+			assertTrue( 'default signal should be of type Signal', signal is Signal );
 		}
 		
 		[Test]
@@ -46,8 +47,8 @@ package be.creynders.signalresponder.tests
 		{
 			var factory : SignalFactory = new SignalFactory( PrioritySignal );
 			var signal : ISignal = factory.createSignal();
-			Assert.assertNotNull("signal should not be null", signal);
-			Assert.assertTrue( 'default signal should be of type Signal', signal is PrioritySignal );
+			assertNotNull("signal should not be null", signal);
+			assertTrue( 'default signal should be of type Signal', signal is PrioritySignal );
 		}		
 
 		[Test]
@@ -55,8 +56,8 @@ package be.creynders.signalresponder.tests
 		{
 			var factory : SignalFactory = new SignalFactory( CustomSignal );
 			var signal : ISignal = factory.createSignal();
-			Assert.assertNotNull("signal should not be null", signal);
-			Assert.assertTrue( 'default signal should be of type CustomSignal', signal is CustomSignal );
+			assertNotNull("signal should not be null", signal);
+			assertTrue( 'default signal should be of type CustomSignal', signal is CustomSignal );
 		}		
 
 
@@ -64,8 +65,8 @@ package be.creynders.signalresponder.tests
 		public function testSignalFactoryInitialization():void
 		{
 			var factory : SignalFactoryAccessor = new SignalFactoryAccessor();
-			Assert.assertNotNull("Signal class should have default value", factory.signalClass );
-			Assert.assertEquals( 'Signal class should default to Signal', factory.signalClass, Signal );
+			assertNotNull("Signal class should have default value", factory.signalClass );
+			assertEquals( 'Signal class should default to Signal', factory.signalClass, Signal );
 		}
 	}
 }

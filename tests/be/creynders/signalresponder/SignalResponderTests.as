@@ -1,12 +1,8 @@
-package be.creynders.signalresponder.tests
+package be.creynders.signalresponder
 {
-	import be.creynders.signalresponder.ISignalResponder;
-	import be.creynders.signalresponder.ResponderStatus;
-	import be.creynders.signalresponder.SignalFactory;
-	import be.creynders.signalresponder.SignalResponder;
-	import be.creynders.signalresponder.tests.support.CustomSignal;
-	
-	import flexunit.framework.Assert;
+	import asunit.asserts.assertEquals;
+	import asunit.asserts.assertNotNull;
+	import asunit.asserts.assertTrue;
 	
 	import org.osflash.signals.PrioritySignal;
 	
@@ -36,7 +32,7 @@ package be.creynders.signalresponder.tests
 		public function testReadyStatus():void
 		{
 			var responder : ISignalResponder = new SignalResponder();
-			Assert.assertEquals("status should be ResponderStatus.READY", ResponderStatus.READY,responder.status );
+			assertEquals("status should be ResponderStatus.READY", ResponderStatus.READY,responder.status );
 		}
 		
 		[Test]
@@ -45,8 +41,8 @@ package be.creynders.signalresponder.tests
 			var responder : ISignalResponder = new SignalResponder();
 			responder.failureSignal.dispatch();
 			
-			Assert.assertEquals("status should be ResponderStatus.FAILED", ResponderStatus.FAILED,responder.status );
-			Assert.assertTrue( 'should be completed', responder.hasCompleted );
+			assertEquals("status should be ResponderStatus.FAILED", ResponderStatus.FAILED,responder.status );
+			assertTrue( 'should be completed', responder.hasCompleted );
 		}
 		
 		[Test]
@@ -55,8 +51,8 @@ package be.creynders.signalresponder.tests
 			var responder : ISignalResponder = new SignalResponder();
 			responder.successSignal.dispatch();
 			
-			Assert.assertEquals("status should be ResponderStatus.SUCCESS", ResponderStatus.SUCCEEDED,responder.status );
-			Assert.assertTrue( 'should be completed', responder.hasCompleted );
+			assertEquals("status should be ResponderStatus.SUCCESS", ResponderStatus.SUCCEEDED,responder.status );
+			assertTrue( 'should be completed', responder.hasCompleted );
 		}
 		
 		[Test]
@@ -71,8 +67,8 @@ package be.creynders.signalresponder.tests
 			responder.successSignal.addOnce( handler );
 			responder.successSignal.dispatch( payload );
 			
-			Assert.assertNotNull("passed payload should be set", passed );
-			Assert.assertEquals( 'passed payload should have correct value', payload, passed );
+			assertNotNull("passed payload should be set", passed );
+			assertEquals( 'passed payload should have correct value', payload, passed );
 		}
 		
 		[Test]
@@ -85,7 +81,7 @@ package be.creynders.signalresponder.tests
 			responder.successSignal.addOnce( handler );
 			responder.successSignal.dispatch();
 			
-			Assert.assertTrue( 'should have passed', passed );
+			assertTrue( 'should have passed', passed );
 		}
 		
 	}

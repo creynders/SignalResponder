@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<project name="SignalResponder" basedir="."> 
+    <property name="dir.flex.sdk" value="/Applications/Adobe Flash Builder 4/sdks/4.0.0"/> 
+    <property name="dir.docs" value="${basedir}/docs"/> 
+    <taskdef resource="flexTasks.tasks" classpath="${dir.flex.sdk}/ant/lib/flexTasks.jar" /> 
+    <target name="createDocs"> 
+        <asdoc output="${dir.docs}" lenient="true" failonerror="true"> 
+            <doc-sources 
+                path-element="${FLEX_HOME}/frameworks/projects/spark/src/spark/components/Button.as"/> 
+            <doc-sources 
+                path-element="${FLEX_HOME}/frameworks/projects/framework/src/mx/controls/Button.as"/> 
+        </asdoc> 
+    </target> 
+    <target name="clean"> 
+        <delete includeEmptyDirs="true"> 
+            <fileset dir="${dir.docs}" includes="**/*"/> 
+        </delete> 
+    </target> 
+</project>

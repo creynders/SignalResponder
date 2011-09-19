@@ -1,8 +1,7 @@
-package be.creynders.signalresponder.tests
+package be.creynders.signalresponder
 {
 	[Suite]
-	[RunWith("org.flexunit.runners.Suite")]
-	public class SignalResponderTestSuite
+	public class AllTests
 	{
 		public var signalFactoryTests : SignalFactoryTests;
 		public var signalResponderTests : SignalResponderTests;

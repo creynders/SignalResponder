@@ -41,10 +41,12 @@ package be.creynders.signalresponder
 		
 		public function SignalResponder( signalFactory : ISignalFactory = null )
 		{
+			_status = ResponderStatus.READY
 			_signalFactory = signalFactory || new SignalFactory();
 			
 			successSignal.add( _handleSuccessSignal );
 			failureSignal.add( _handleFailureSignal );
+			
 		}
 		
 		/*-------------------------------------------------*/
@@ -116,7 +118,7 @@ package be.creynders.signalresponder
 			_failureSignal.add( _handleFailureSignal );
 		}
 		
-		private var _status : ResponderStatus = ResponderStatus.READY;
+		private var _status : ResponderStatus;
 		/**
 		 * @inheritdoc
 		 */

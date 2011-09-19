@@ -1,0 +1,1 @@
+- transfer signal listeners upon injection
