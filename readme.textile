@@ -1,9 +1,11 @@
 h1. SignalResponder
 
+You can contact me on Twitter with questions/remarks : "@camillereynders":http://twitter.com/camillereynders.
+
 h2. Dependencies:
 
-Signals by Robert Penner
-https://github.com/robertpenner/as3-signals
+"Signals":https://github.com/robertpenner/as3-signals by Robert Penner
+
 
 h2. Why?
 
