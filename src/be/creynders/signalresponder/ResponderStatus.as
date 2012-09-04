@@ -51,6 +51,11 @@ package be.creynders.signalresponder
 		 */
 		static public const FAILED : ResponderStatus = new ResponderStatus( 'failed' );
 		
+		/**
+		 * the responder is destroyed and ready for GC
+		 */
+		static public const DESTROYED : ResponderStatus = new ResponderStatus( 'destroyed' );
+		
 		public function ResponderStatus( value : String )
 		{
 			_value = value;

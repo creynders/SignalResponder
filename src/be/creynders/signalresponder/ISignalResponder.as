@@ -72,5 +72,7 @@ package be.creynders.signalresponder
 		 */
 		function get result() : *;
 		
+		function destroy() : void;
+		
 	}
 }
