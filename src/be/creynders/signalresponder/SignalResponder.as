@@ -161,17 +161,28 @@ package be.creynders.signalresponder
 		
 		public function destroy():void
 		{
-			_startSignal.removeAll();
-			_startSignal = null;
-			_progressSignal.removeAll();
-			_progressSignal = null;
-			_failureSignal.removeAll();
-			_failureSignal = null;
-			_successSignal.removeAll();
-			_successSignal = null;
+			if( _startSignal ){
+				_startSignal.removeAll();
+				_startSignal = null;
+			}
+			
+			if( _progressSignal ){
+				_progressSignal.removeAll();
+				_progressSignal = null;
+			}
+			
+			if( _failureSignal ){
+				_failureSignal.removeAll();
+				_failureSignal = null;
+			}
+			if( _successSignal ){
+				_successSignal.removeAll();
+				_successSignal = null;
+			}
 			_signalFactory = null;
 			_result = null;
 			_status = ResponderStatus.DESTROYED;
+			
 		}
 		
 	}
